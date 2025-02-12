@@ -1,3 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #1d4ed8;
+    --color-primary-light: #1d4ed8;
+    --color-foreground: #232323;
+    --color-foreground-light: #6a7282;
+    --color-background: #ffffff;
+    --color-background-light: #f9fafb;
+    --color-gray: #6b7280;
+}
+
+@font-face {
+    font-family: InterLight;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../assets/fonts/Inter-Light.ttf");
+}
+
+@font-face {
+    font-family: InterRegular;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../assets/fonts/Inter-Regular.ttf");
+}
+
+@font-face {
+    font-family: InterMedium;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../assets/fonts/Inter-Medium.ttf");
+}
+
+@font-face {
+    font-family: InterSemiBold;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../assets/fonts/Inter-SemiBold.ttf");
+}
+
 * {
     margin: 0;
     padding: 0;
