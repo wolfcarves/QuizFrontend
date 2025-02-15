@@ -1,13 +1,26 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-    --color-primary: #1d4ed8;
-    --color-primary-light: #1d4ed8;
-    --color-foreground: #232323;
-    --color-foreground-light: #6a7282;
-    --color-background: #ffffff;
-    --color-background-light: #f9fafb;
-    --color-gray: #6b7280;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@layer base {
+    :root {
+        --primary: hsl(222, 55%, 12%);
+        --secondary: hsl(195, 100%, 50%);
+        --primary-light: hsl(226, 78%, 42%);
+        --primary-dark: hsl(198, 88%, 47%);
+        --foreground: hsl(0, 0%, 14%);
+        --muted: hsl(0, 1%, 72%);
+        --background: hsl(0, 0%, 100%);
+        --background-light: hsl(210, 20%, 98%);
+        --placeholder: hsl(0, 2%, 61%);
+        --gray: hsl(220, 9%, 50%);
+    }
 }
 
 @font-face {
@@ -27,19 +40,27 @@
 @font-face {
     font-family: InterMedium;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     src: url("../assets/fonts/Inter-Medium.ttf");
 }
 
 @font-face {
     font-family: InterSemiBold;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     src: url("../assets/fonts/Inter-SemiBold.ttf");
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@font-face {
+    font-family: InterBold;
+    font-style: normal;
+    font-weight: 700;
+    src: url("../assets/fonts/Inter-Bold.ttf");
+}
+
+@font-face {
+    font-family: InterBlack;
+    font-style: normal;
+    font-weight: 800;
+    src: url("../assets/fonts/Inter-Black.ttf");
 }
