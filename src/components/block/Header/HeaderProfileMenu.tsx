@@ -1,11 +1,15 @@
-import { Button, Typography } from "@/components/ui"
+import { Avatar, Button, Typography } from "@/components/ui"
 import { useState } from "react"
 import { RiArrowDownSLine } from "react-icons/ri"
+import { useNavigate } from "react-router"
 
 const HeaderProfileMenu = () => {
+    const navigate = useNavigate()
+
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
 
     const handleLogout = () => {
+        navigate("/login")
         setIsDropdownOpen(false)
     }
 
@@ -16,13 +20,7 @@ const HeaderProfileMenu = () => {
                 onClick={() => setIsDropdownOpen((prev) => !prev)}
             >
                 <div className="flex gap-x-1.5 items-center">
-                    <div className="flex w-10 h-10 border border-muted/20 bg-muted/10 rounded-full ps-[2px]">
-                        <Typography.Span
-                            title="RC"
-                            size="sm"
-                            className="m-auto"
-                        />
-                    </div>
+                    <Avatar size="lg" />
                     <Typography.Span
                         title="Rodel Crisosto"
                         weight="semibold"

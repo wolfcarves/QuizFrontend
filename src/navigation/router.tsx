@@ -4,6 +4,7 @@ import HomePage from "../pages/home/home"
 import LoginPage from "../pages/auth/login"
 import SignupPage from "@/pages/auth/signup"
 import AuthLayout from "@/layout/auth-layout"
+import QuizPage from "@/pages/quiz/QuizPage"
 
 const Router = () => {
     return (
@@ -16,6 +17,8 @@ const Router = () => {
 
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<HomePage />} />
+                    <Route path="quiz/create" element={<HomePage />} />
+                    <Route path="quiz/:quizId" element={<QuizPage />} />
                 </Route>
             </Routes>
         </BrowserRouter>

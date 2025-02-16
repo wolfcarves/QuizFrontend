@@ -13,7 +13,11 @@ const MainLayout = ({ className, ...props }: MainLayoutProps) => {
             <Header />
 
             <div className="container lg:container">
-                <Outlet />
+                <div className="py-10">
+                    <div className="w-full max-w-4xl mx-auto space-y-2">
+                        <Outlet />
+                    </div>
+                </div>
             </div>
         </main>
     )

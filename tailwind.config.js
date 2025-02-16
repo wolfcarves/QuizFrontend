@@ -28,6 +28,15 @@ export default {
                 "9xl": "160px",
             },
         },
+        keyframes: {
+            question: {
+                "0%": { opacity: "0%" },
+                "100%": { opacity: "100%" },
+            },
+        },
+        animation: {
+            question: "question 0.5s ease-out forwards",
+        },
     },
     plugins: [],
 }

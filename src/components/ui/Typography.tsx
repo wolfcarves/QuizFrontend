@@ -61,7 +61,7 @@ const H1 = ({
 }: TypographyProps) => {
     return (
         <h1
-            className={`text-4xl ${typography({ size, color, weight, className })}`}
+            className={`text-3xl md:text-4xl ${typography({ size, color, weight, className })}`}
         >
             {title ?? children}
         </h1>
@@ -78,7 +78,7 @@ const H2 = ({
 }: TypographyProps) => {
     return (
         <h2
-            className={`text-3xl ${typography({ size, color, weight, className })}`}
+            className={`text-2xl md:text-3xl ${typography({ size, color, weight, className })}`}
         >
             {title ?? children}
         </h2>
@@ -95,7 +95,7 @@ const H3 = ({
 }: TypographyProps) => {
     return (
         <h3
-            className={`text-2xl ${typography({ size, color, weight, className })}`}
+            className={`text-xl md:text-2xl ${typography({ size, color, weight, className })}`}
         >
             {title ?? children}
         </h3>
@@ -112,7 +112,7 @@ const H4 = ({
 }: TypographyProps) => {
     return (
         <h4
-            className={`text-xl ${typography({ size, color, weight, className })}`}
+            className={`text-lg md:text-xl ${typography({ size, color, weight, className })}`}
         >
             {title ?? children}
         </h4>
@@ -129,7 +129,7 @@ const H5 = ({
 }: TypographyProps) => {
     return (
         <h5
-            className={`text-lg ${typography({ size, color, weight, className })}`}
+            className={`text-md md:text-lg ${typography({ size, color, weight, className })}`}
         >
             {title ?? children}
         </h5>
