@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router"
 import MainLayout from "@/layout/main-layout"
-import HomePage from "../pages/home/home"
-import LoginPage from "../pages/auth/login"
-import SignupPage from "@/pages/auth/signup"
+import HomePage from "../pages/page"
+import LoginPage from "../pages/auth/login/page"
+import SignupPage from "@/pages/auth/signup/page"
 import AuthLayout from "@/layout/auth-layout"
-import QuizPage from "@/pages/quiz/QuizPage"
+import QuizPage from "@/pages/quiz/page"
+import QuizCreatePage from "@/pages/quiz/create/page"
 
 const Router = () => {
     return (
@@ -17,7 +18,7 @@ const Router = () => {
 
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<HomePage />} />
-                    <Route path="quiz/create" element={<HomePage />} />
+                    <Route path="quiz/create" element={<QuizCreatePage />} />
                     <Route path="quiz/:quizId" element={<QuizPage />} />
                 </Route>
             </Routes>

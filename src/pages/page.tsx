@@ -1,7 +1,10 @@
-import { Quiz } from "@/components/modules"
+import { Quiz } from "@/components/features"
 import { Button } from "@/components/ui"
+import { useNavigate } from "react-router"
 
 const HomePage = () => {
+    const navigate = useNavigate()
+
     return (
         <>
             <div className="flex items-center gap-x-2 py-5">
@@ -10,6 +13,7 @@ const HomePage = () => {
                     variant="outline"
                     size="xxs"
                     rounded="full"
+                    onClick={() => navigate("/quiz/create")}
                 />
             </div>
 
