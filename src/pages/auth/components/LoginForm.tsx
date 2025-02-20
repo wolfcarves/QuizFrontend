@@ -1,21 +1,20 @@
 import { Button, Input } from "@/components/ui"
+import useLoginUser from "@/hooks/post/useLoginUser"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router"
 import { z } from "zod"
 
 const loginSchema = z.object({
-    username: z
-        .string({ required_error: "Please enter your username" })
-        .min(3, { message: "Invalid username or password" })
-        .max(30, { message: "Invalid username or password" }),
+    username: z.string({ required_error: "Please enter your username" }),
     password: z.string({ required_error: "Please enter your password" }),
 })
 
-type LoginSchema = z.infer<typeof loginSchema>
+export type LoginSchema = z.infer<typeof loginSchema>
 
 const LoginForm = () => {
     const navigate = useNavigate()
+    const { mutateAsync } = useLoginUser()
 
     const {
         handleSubmit,
@@ -25,9 +24,15 @@ const LoginForm = () => {
         resolver: zodResolver(loginSchema),
         mode: "onSubmit",
         reValidateMode: "onSubmit",
+        defaultValues: {
+            username: "cazcade",
+            password: "awdawd123",
+        },
     })
 
-    const handleSubmitForm = (data: LoginSchema) => {}
+    const handleSubmitForm = async (data: LoginSchema) => {
+        await mutateAsync(data)
+    }
 
     return (
         <form className="space-y-7" onSubmit={handleSubmit(handleSubmitForm)}>

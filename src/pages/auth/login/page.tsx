@@ -1,5 +1,6 @@
 import { Typography } from "@/components/ui"
 import LoginForm from "../components/LoginForm"
+import withAuthGuard from "@/higher-order/withAuthGuard"
 
 const LoginPage = () => {
     return (
@@ -17,4 +18,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
+export default withAuthGuard(LoginPage)

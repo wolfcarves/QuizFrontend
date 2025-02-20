@@ -28,9 +28,10 @@ const Input = <T extends FieldValues>({
                         <input
                             id={name}
                             className="block rounded-xl px-2.5 pb-2.5 pt-5 w-full border border-[#e6e6e6] focus:outline-none focus:ring-0 focus:border-primary peer font-[InterRegular]"
-                            {...props}
                             placeholder=""
                             {...field}
+                            value={field.value ?? ""}
+                            {...props}
                         />
 
                         <label
