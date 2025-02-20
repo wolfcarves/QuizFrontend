@@ -3,10 +3,12 @@
 /* tslint:disable */
 /* eslint-disable */
 export type LoginResponseDTO = {
-    id?: number;
-    firstname: string | null;
-    lastname: string | null;
-    username: string | null;
-    access_token?: string | null;
+    id: number;
+    firstname: string;
+    lastname: string;
+    username: string;
+    access_token: string;
+    created_at: string;
+    updated_at: string;
 };
 

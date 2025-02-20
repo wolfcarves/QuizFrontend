@@ -1,6 +1,7 @@
 import { ComponentProps } from "react"
 import { Header } from "@/components/block"
 import { Outlet } from "react-router"
+import withAuthGuard from "@/higher-order/withAuthGuard"
 
 type MainLayoutProps = ComponentProps<"main">
 
@@ -23,4 +24,4 @@ const MainLayout = ({ className, ...props }: MainLayoutProps) => {
     )
 }
 
-export default MainLayout
+export default withAuthGuard(MainLayout)

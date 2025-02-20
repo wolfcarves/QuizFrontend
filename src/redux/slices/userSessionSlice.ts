@@ -1,3 +1,4 @@
+import { UserDTO as BaseUserDTO } from "@/services"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 interface UserSession {
@@ -17,26 +18,28 @@ const initialState: UserSessionState = {
     isAuthenticated: false,
 }
 
+interface UserDTO extends BaseUserDTO {
+    access_token: string
+}
+
 const userSessionSlice = createSlice({
     name: "userSessionSlice",
     initialState,
     reducers: {
-        login: (
-            state,
-            action: PayloadAction<{
-                id: number
-                firstname: string
-                lastname: string
-                username: string
-                token: string
-            }>,
-        ) => {
+        login: (state, action: PayloadAction<UserDTO>) => {
             state.user = action.payload
             state.isAuthenticated = true
-            localStorage.setItem("accessToken", action.payload.token)
+            localStorage.setItem("access_token", action.payload.access_token)
+        },
+        getSession: (
+            state,
+            action: PayloadAction<Omit<UserDTO, "access_token">>,
+        ) => {
+            state.user = action.payload
+            state.isAuthenticated = !action.payload
         },
     },
 })
 
-export const { login } = userSessionSlice.actions
+export const { login, getSession } = userSessionSlice.actions
 export default userSessionSlice.reducer

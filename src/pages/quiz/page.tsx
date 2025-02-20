@@ -1,5 +1,6 @@
 import { QuizItem } from "@/components/features"
 import { Typography } from "@/components/ui"
+import withAuthGuard from "@/higher-order/withAuthGuard"
 import { useState } from "react"
 
 const QUESTIONS = [
@@ -68,4 +69,4 @@ const QuizPage = () => {
     )
 }
 
-export default QuizPage
+export default withAuthGuard(QuizPage)

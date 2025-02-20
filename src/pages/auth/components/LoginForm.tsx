@@ -1,5 +1,6 @@
 import { Button, Input } from "@/components/ui"
-import useLoginUser from "@/hooks/post/useLoginUser"
+import useLoginUserMutation from "@/hooks/mutations/useLoginUserMutation"
+import { ApiError } from "@/services"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router"
@@ -14,12 +15,14 @@ export type LoginSchema = z.infer<typeof loginSchema>
 
 const LoginForm = () => {
     const navigate = useNavigate()
-    const { mutateAsync } = useLoginUser()
+
+    const { mutateAsync, isPending: isLoginPending } = useLoginUserMutation()
 
     const {
         handleSubmit,
         control,
         formState: { errors },
+        setError,
     } = useForm<LoginSchema>({
         resolver: zodResolver(loginSchema),
         mode: "onSubmit",
@@ -31,7 +34,19 @@ const LoginForm = () => {
     })
 
     const handleSubmitForm = async (data: LoginSchema) => {
-        await mutateAsync(data)
+        try {
+            const response = await mutateAsync(data)
+            if (response) navigate("/")
+        } catch (error) {
+            if (error instanceof ApiError) {
+                const errorMessage = error.body.message
+
+                if (errorMessage === "Username or password is incorrect") {
+                    setError("username", { message: errorMessage })
+                    setError("password", { message: errorMessage })
+                }
+            }
+        }
     }
 
     return (
@@ -51,13 +66,13 @@ const LoginForm = () => {
                     errorMessage={errors.password?.message}
                 />
             </div>
-
             <div className="space-y-2">
                 <Button
                     type="submit"
                     title="Login"
                     className="w-full"
                     size="lg"
+                    isLoading={isLoginPending}
                 />
                 <Button
                     title="Create an account"

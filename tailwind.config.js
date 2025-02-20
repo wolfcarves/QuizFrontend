@@ -33,9 +33,14 @@ export default {
                 "0%": { opacity: "0%" },
                 "100%": { opacity: "100%" },
             },
+            pulse: {
+                "0%": { opacity: "0%" },
+                "100%": { opacity: "100%" },
+            },
         },
         animation: {
             question: "question 0.5s ease-out forwards",
+            pulse: "pulse 0.8s ease-out infinite alternate",
         },
     },
     plugins: [],

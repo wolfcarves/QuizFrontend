@@ -14,7 +14,7 @@ export class AuthService {
      * @returns LoginResponseDTO OK
      * @throws ApiError
      */
-    public static loginUser({
+    public static postApiV1AuthLogin({
         requestBody,
     }: {
         requestBody?: UserLoginDTO,
@@ -34,7 +34,7 @@ export class AuthService {
      * @returns UserDTO OK
      * @throws ApiError
      */
-    public static signupUser({
+    public static postApiV1AuthSignup({
         requestBody,
     }: {
         requestBody?: UserSignUpDTO,
