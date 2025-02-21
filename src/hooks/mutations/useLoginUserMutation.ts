@@ -1,13 +1,12 @@
 import { LoginSchema } from "@/pages/auth/components/LoginForm"
-import { login } from "@/redux/slices/userSessionSlice"
 import { AuthService } from "@/services"
-import { useMutation } from "@tanstack/react-query"
-import { useDispatch } from "react-redux"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { GET_USER_SESSION_KEY } from "../queries/useGetSessionQuery"
 
 const LOGIN_USER_KEY = () => "LOGIN_USER_KEY"
 
 export default function useLoginUserMutation() {
-    const dispatch = useDispatch()
+    const queryClient = useQueryClient()
 
     return useMutation({
         mutationKey: [LOGIN_USER_KEY()],
@@ -16,9 +15,12 @@ export default function useLoginUserMutation() {
                 requestBody,
             })
 
-            if (response) dispatch(login(response))
-
             return response
+        },
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({
+                queryKey: [GET_USER_SESSION_KEY()],
+            })
         },
     })
 }

@@ -73,6 +73,7 @@ const LoginForm = () => {
                     className="w-full"
                     size="lg"
                     isLoading={isLoginPending}
+                    disabled={isLoginPending}
                 />
                 <Button
                     title="Create an account"

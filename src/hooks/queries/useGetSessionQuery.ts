@@ -1,24 +1,22 @@
-import { getSession } from "@/redux/slices/userSessionSlice"
-import { AuthService } from "@/services"
+import { applyOpenApiConfig } from "@/config/openapiConfig"
+import { AuthService, UserDTO } from "@/services"
 import { useQuery } from "@tanstack/react-query"
-import { useDispatch } from "react-redux"
 
-const GET_USER_SESSION_KEY = () => "GET_USER_SESSION_KEY"
+export const GET_USER_SESSION_KEY = () => "GET_USER_SESSION_KEY"
 
 export default function useGetSessionQuery() {
-    const dispatch = useDispatch()
-
     return useQuery({
         queryKey: [GET_USER_SESSION_KEY()],
-        queryFn: async () => {
-            const response = await AuthService.getApiV1AuthSession()
+        queryFn: async (): Promise<UserDTO | null> => {
+            applyOpenApiConfig()
 
-            console.log("response", response)
-
-            if (response) dispatch(getSession(response))
-
-            return response
+            try {
+                const response = await AuthService.getApiV1AuthSession()
+                return response
+            } catch {
+                return null
+            }
         },
-        staleTime: 1000 * 60 * 3,
+        staleTime: 1000 * 60 * 5,
     })
 }

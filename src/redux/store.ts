@@ -1,10 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"
-import userSessionReducer from "./slices/userSessionSlice"
 
 export const store = configureStore({
-    reducer: {
-        userSession: userSessionReducer,
-    },
+    reducer: {},
 })
 
 export type AppRootState = ReturnType<typeof store.getState>

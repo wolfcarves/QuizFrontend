@@ -1,3 +1,4 @@
+import { theme } from "@/theme/theme"
 import { cva, VariantProps } from "cva"
 import * as React from "react"
 import { AiOutlineLoading } from "react-icons/ai"
@@ -9,6 +10,7 @@ const button = cva("flex gap-x-3 items-center", {
                 "bg-primary text-background-light hover:bg-primary/90 duration-100",
             ghost: "bg-opacity-0 hover:bg-muted/10 duration-100 ",
             outline: "border border-foreground/20 hover:bg-foreground/5",
+            "outline-solid": "border border-primary hover:bg-foreground/5",
             disabled: "bg-muted opacity-50 cursor-not-allowed",
         },
         size: {
@@ -91,7 +93,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 {!isLoading ? (
                     <>{children ?? title}</>
                 ) : (
-                    <AiOutlineLoading className="animate-spin" size={24} />
+                    <AiOutlineLoading
+                        color={theme["background"]}
+                        className="animate-spin"
+                        size={24}
+                    />
                 )}
             </button>
         )

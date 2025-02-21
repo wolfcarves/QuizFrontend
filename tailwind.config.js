@@ -37,10 +37,15 @@ export default {
                 "0%": { opacity: "0%" },
                 "100%": { opacity: "100%" },
             },
+            spin: {
+                "0%": { transform: "rotate(0deg)" },
+                "100%": { transform: "rotate(360deg)" },
+            },
         },
         animation: {
             question: "question 0.5s ease-out forwards",
             pulse: "pulse 0.8s ease-out infinite alternate",
+            spin: "spin 1s linear infinite",
         },
     },
     plugins: [],
