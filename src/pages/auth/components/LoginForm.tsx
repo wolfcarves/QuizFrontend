@@ -16,7 +16,8 @@ export type LoginSchema = z.infer<typeof loginSchema>
 const LoginForm = () => {
     const navigate = useNavigate()
 
-    const { mutateAsync, isPending: isLoginPending } = useLoginUserMutation()
+    const { mutateAsync: loginUser, isPending: isLoginPending } =
+        useLoginUserMutation()
 
     const {
         handleSubmit,
@@ -35,12 +36,11 @@ const LoginForm = () => {
 
     const handleSubmitForm = async (data: LoginSchema) => {
         try {
-            const response = await mutateAsync(data)
+            const response = await loginUser(data)
             if (response) navigate("/")
         } catch (error) {
             if (error instanceof ApiError) {
                 const errorMessage = error.body.message
-
                 if (errorMessage === "Username or password is incorrect") {
                     setError("username", { message: errorMessage })
                     setError("password", { message: errorMessage })

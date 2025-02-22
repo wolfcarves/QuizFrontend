@@ -6,6 +6,8 @@ const withAuthGuard = <T extends object>(Component: ComponentType<T>) => {
     const NewComponent = (props: T) => {
         const { data, isLoading, isPending } = useGetSessionQuery()
 
+        console.log("data", data)
+
         if (!data && !isLoading && !isPending)
             return <ErrorPage title="401" subtitle="Unauthorized" />
 

@@ -15,6 +15,7 @@ export type { NotFoundResponse } from './models/NotFoundResponse';
 export type { QuestionCreateDTO } from './models/QuestionCreateDTO';
 export type { QuizCreateDTO } from './models/QuizCreateDTO';
 export type { QuizDTO } from './models/QuizDTO';
+export type { RenewAccessTokenResponseDTO } from './models/RenewAccessTokenResponseDTO';
 export type { ServerInternalResponse } from './models/ServerInternalResponse';
 export type { UnauthorizedResponse } from './models/UnauthorizedResponse';
 export type { UserDTO } from './models/UserDTO';

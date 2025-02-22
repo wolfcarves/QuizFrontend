@@ -1,15 +1,16 @@
 import { Avatar, Button, Typography } from "@/components/ui"
+import useLogoutUserMutation from "@/hooks/mutations/useLogoutUserMutation"
 import { useState } from "react"
 import { RiArrowDownSLine } from "react-icons/ri"
-import { useNavigate } from "react-router"
 
 const HeaderProfileMenu = () => {
-    const navigate = useNavigate()
+    const { mutateAsync: logoutUser } = useLogoutUserMutation()
 
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
 
-    const handleLogout = () => {
-        navigate("/login")
+    const handleLogout = async () => {
+        // navigate("/login")
+        await logoutUser()
         setIsDropdownOpen(false)
     }
 

@@ -11,9 +11,13 @@ export default function useLoginUserMutation() {
     return useMutation({
         mutationKey: [LOGIN_USER_KEY()],
         mutationFn: async (requestBody: LoginSchema) => {
+            localStorage.removeItem("access_token")
+
             const response = await AuthService.postApiV1AuthLogin({
                 requestBody,
             })
+
+            localStorage.setItem("access_token", response.access_token)
 
             return response
         },

@@ -8,7 +8,7 @@
         "build": "tsc -b && vite build",
         "lint": "eslint .",
         "preview": "vite preview",
-        "codegen": "openapi --input http://localhost:5000/swagger/v1/swagger.json --output ./src/services --useOptions true --useUnionTypes true"
+        "codegen": "openapi --input http://localhost:5000/swagger/v1/swagger.json --output ./src/services --useOptions true --useUnionTypes true --client axios"
     },
     "dependencies": {
         "@hookform/resolvers": "^4.1.0",
