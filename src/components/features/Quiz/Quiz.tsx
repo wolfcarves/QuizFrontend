@@ -19,10 +19,7 @@ const Quiz = () => {
                 </div>
 
                 <div>
-                    <Typography.H4
-                        title="Data Structure and Algorithm"
-                        weight="bold"
-                    />
+                    <Typography.H4 title="Data Structure and Algorithm" weight="bold" />
                     <Typography.H6
                         title="Let' see how good you are in data structure and algorithm."
                         color="muted"
@@ -31,28 +28,16 @@ const Quiz = () => {
 
                 <div className="flex justify-between pt-5">
                     <div className="flex items-center gap-x-4">
-                        <Typography.Span
-                            title="June 18, 2000"
-                            size="xs"
-                            color="muted"
-                        />
+                        <Typography.Span title="June 18, 2000" size="xs" color="muted" />
 
                         <div className="flex gap-x-1">
                             <MdOutlineEmojiPeople color={theme["muted"]} />
-                            <Typography.Span
-                                title="52"
-                                size="xs"
-                                color="muted"
-                            />
+                            <Typography.Span title="52" size="xs" color="muted" />
                         </div>
 
                         <div className="flex gap-x-1">
                             <IoCheckmarkCircleSharp color={theme["muted"]} />
-                            <Typography.Span
-                                title="10"
-                                size="xs"
-                                color="muted"
-                            />
+                            <Typography.Span title="10" size="xs" color="muted" />
                         </div>
                     </div>
 

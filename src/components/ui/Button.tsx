@@ -6,12 +6,11 @@ import { AiOutlineLoading } from "react-icons/ai"
 const button = cva("flex gap-x-3 items-center", {
     variants: {
         variant: {
-            primary:
-                "bg-primary text-background-light hover:bg-primary/90 duration-100",
+            primary: "bg-primary text-background-light hover:bg-primary/90 duration-100",
             ghost: "bg-opacity-0 hover:bg-muted/10 duration-100 ",
             outline: "border border-foreground/20 hover:bg-foreground/5",
             "outline-solid": "border border-primary hover:bg-foreground/5",
-            disabled: "bg-muted opacity-50 cursor-not-allowed",
+            disabled: "bg-muted/20 opacity-50 cursor-not-allowed",
         },
         size: {
             xxs: "px-[14px] py-[6px] text-sm",

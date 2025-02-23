@@ -1,4 +1,4 @@
-import { Button, Input } from "@/components/ui"
+import { Button, InputFloatingLabel } from "@/components/ui"
 import { useNavigate } from "react-router"
 
 const SignupForm = () => {
@@ -6,11 +6,11 @@ const SignupForm = () => {
 
     return (
         <form className="space-y-4">
-            <Input placeholder="Username" />
-            <Input placeholder="Firstname" />
-            <Input placeholder="Lastname" />
-            <Input type="password" placeholder="Password" />
-            <Input type="password" placeholder="Confirm Password" />
+            <InputFloatingLabel placeholder="Username" />
+            <InputFloatingLabel placeholder="Firstname" />
+            <InputFloatingLabel placeholder="Lastname" />
+            <InputFloatingLabel type="password" placeholder="Password" />
+            <InputFloatingLabel type="password" placeholder="Confirm Password" />
 
             <div className="space-y-2 pt-5">
                 <Button title="Create account" className="w-full" />

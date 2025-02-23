@@ -5,12 +5,7 @@ import { ComponentProps, useState } from "react"
 import { IoMdCheckmarkCircleOutline } from "react-icons/io"
 
 const Choice = (props: ComponentProps<"div">) => {
-    return (
-        <div
-            className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 w-full"
-            {...props}
-        />
-    )
+    return <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 w-full" {...props} />
 }
 
 interface ChoiceItemProps extends ComponentProps<"button"> {
@@ -21,9 +16,7 @@ interface ChoiceItemProps extends ComponentProps<"button"> {
 const ChoiceItem = ({ title, center, onClick }: ChoiceItemProps) => {
     const [isSelected, setIsSelected] = useState<boolean>(false)
 
-    const handleChoiceClick = (
-        event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    ) => {
+    const handleChoiceClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         onClick?.(event)
         setIsSelected(true)
     }

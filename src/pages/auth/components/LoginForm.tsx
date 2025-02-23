@@ -1,4 +1,4 @@
-import { Button, Input } from "@/components/ui"
+import { Button, InputFloatingLabel } from "@/components/ui"
 import useLoginUserMutation from "@/hooks/mutations/useLoginUserMutation"
 import { ApiError } from "@/services"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -16,8 +16,7 @@ export type LoginSchema = z.infer<typeof loginSchema>
 const LoginForm = () => {
     const navigate = useNavigate()
 
-    const { mutateAsync: loginUser, isPending: isLoginPending } =
-        useLoginUserMutation()
+    const { mutateAsync: loginUser, isPending: isLoginPending } = useLoginUserMutation()
 
     const {
         handleSubmit,
@@ -52,17 +51,17 @@ const LoginForm = () => {
     return (
         <form className="space-y-7" onSubmit={handleSubmit(handleSubmitForm)}>
             <div>
-                <Input
+                <InputFloatingLabel
                     name="username"
                     control={control}
-                    label="Username"
+                    placeholder="Username"
                     errorMessage={errors.username?.message}
                 />
-                <Input
+                <InputFloatingLabel
                     name="password"
                     control={control}
                     type="password"
-                    label="Password"
+                    placeholder="Password"
                     errorMessage={errors.password?.message}
                 />
             </div>

@@ -23,12 +23,7 @@ const Router = () => {
                     <Route path="quiz/:quizId" element={<QuizPage />} />
                 </Route>
 
-                <Route
-                    path="*"
-                    element={
-                        <ErrorPage title="404" subtitle="Page not found" />
-                    }
-                />
+                <Route path="*" element={<ErrorPage title="404" subtitle="Page not found" />} />
             </Routes>
         </BrowserRouter>
     )

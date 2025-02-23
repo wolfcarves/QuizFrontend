@@ -61,9 +61,7 @@ const QuizPage = () => {
                     onAnswered={handleOnAnswered}
                 />
             ) : (
-                <Typography.H4 weight="medium">
-                    Congratulation you finish the quiz !
-                </Typography.H4>
+                <Typography.H4 weight="medium">Congratulation you finish the quiz !</Typography.H4>
             )}
         </div>
     )

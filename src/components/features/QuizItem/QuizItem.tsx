@@ -10,13 +10,7 @@ interface QuizItemProps {
     onAnswered?: () => void
 }
 
-const QuizItem = ({
-    question,
-    choices,
-    answer,
-    isLoading,
-    onAnswered,
-}: QuizItemProps) => {
+const QuizItem = ({ question, choices, answer, isLoading, onAnswered }: QuizItemProps) => {
     const [hasSelected, setHasSelected] = useState<boolean>(false)
 
     let timeout1: NodeJS.Timeout
@@ -49,11 +43,7 @@ const QuizItem = ({
 
             <Choice>
                 {choices.map((choice, idx) => (
-                    <Choice.Item
-                        key={idx}
-                        title={choice}
-                        onClick={handleChoiceClick}
-                    />
+                    <Choice.Item key={idx} title={choice} onClick={handleChoiceClick} />
                 ))}
             </Choice>
         </div>

@@ -5,7 +5,7 @@ export const theme = {
     "primary-dark": "hsl(198, 88%, 47%)",
     foreground: "hsl(0, 0%, 14%)",
     muted: "hsl(210, 5%, 44%)",
-    border: "hsl(210, 5%, 10%)",
+    border: "hsl(210, 5%, 44% / 0.2)",
     background: "hsl(0, 0%, 100%)",
     "background-light": "hsl(210, 20%, 98%)",
     placeholder: "hsl(0, 2%, 61%)",

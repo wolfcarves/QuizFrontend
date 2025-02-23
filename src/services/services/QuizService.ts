@@ -12,7 +12,7 @@ export class QuizService {
      * @returns QuizDTO OK
      * @throws ApiError
      */
-    public static getApiV1Quiz(): CancelablePromise<Array<QuizDTO>> {
+    public static getQuizzes(): CancelablePromise<Array<QuizDTO>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v1/quiz',
@@ -26,7 +26,7 @@ export class QuizService {
      * @returns QuizDTO OK
      * @throws ApiError
      */
-    public static postApiV1Quiz({
+    public static createQuiz({
         requestBody,
     }: {
         requestBody?: QuizCreateDTO,

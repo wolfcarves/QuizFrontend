@@ -20,7 +20,7 @@ const ErrorPage = ({ title, subtitle }: ErrorPageProps) => {
                 className="mt-5"
                 size="xs"
             >
-                Take me back to the first time I knew you
+                Take me back to the very first time I knew you
             </Button>
         </div>
     )

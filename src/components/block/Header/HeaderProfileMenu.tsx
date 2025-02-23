@@ -1,18 +1,30 @@
 import { Avatar, Button, Typography } from "@/components/ui"
 import useLogoutUserMutation from "@/hooks/mutations/useLogoutUserMutation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { RiArrowDownSLine } from "react-icons/ri"
+import { useLocation, useNavigate } from "react-router"
 
 const HeaderProfileMenu = () => {
+    const { pathname } = useLocation()
+    const navigate = useNavigate()
+
     const { mutateAsync: logoutUser } = useLogoutUserMutation()
 
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
 
     const handleLogout = async () => {
-        // navigate("/login")
-        await logoutUser()
-        setIsDropdownOpen(false)
+        try {
+            await logoutUser()
+            navigate("/login")
+            setIsDropdownOpen(false)
+        } catch (error) {
+            //
+        }
     }
+
+    useEffect(() => {
+        setIsDropdownOpen(false)
+    }, [pathname])
 
     return (
         <div className="relative">
@@ -22,11 +34,7 @@ const HeaderProfileMenu = () => {
             >
                 <div className="flex gap-x-1.5 items-center">
                     <Avatar size="lg" />
-                    <Typography.Span
-                        title="Rodel Crisosto"
-                        weight="semibold"
-                        size="sm"
-                    />
+                    <Typography.Span title="Rodel Crisosto" weight="semibold" size="sm" />
                 </div>
                 <RiArrowDownSLine className="mt-1" />
             </button>
