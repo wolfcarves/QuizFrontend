@@ -1,7 +1,9 @@
 import { QuizItem } from "@/components/features"
 import { Typography } from "@/components/ui"
 import withAuthGuard from "@/higher-order/withAuthGuard"
+import useGetQuestionsByQuizId from "@/hooks/queries/useGetQuestionsByQuizId"
 import { useState } from "react"
+import { useParams } from "react-router"
 
 const QUESTIONS = [
     {
@@ -10,53 +12,26 @@ const QUESTIONS = [
         choices: ["Until June", "Until June 2"],
         answer: "Until June 2",
     },
-    {
-        question:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, voluptatibus.",
-        choices: ["Rodel", "Crisosto"],
-        answer: "Rodel",
-    },
-    {
-        question:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, voluptatibus.",
-        choices: ["Rodel", "Crisosto"],
-        answer: "Rodel",
-    },
-    {
-        question:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, voluptatibus.",
-        choices: ["Rodel", "Crisosto"],
-        answer: "Rodel",
-    },
-    {
-        question:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, voluptatibus.",
-        choices: ["Rodel", "Crisosto"],
-        answer: "Rodel",
-    },
-    {
-        question:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, voluptatibus.",
-        choices: ["Rodel", "Crisosto"],
-        answer: "Rodel",
-    },
 ]
 
 const QuizPage = () => {
+    const { quizId } = useParams<{ quizId: string }>()
     const [questionIdx, setQuestionIdx] = useState<number>(0)
+
+    const { data: questions } = useGetQuestionsByQuizId(Number(quizId))
 
     const handleOnAnswered = () => {
         setQuestionIdx((prev) => prev + 1)
     }
 
     return (
-        <div className="flex flex-col gap-y-10 justify-center items-center my-auto min-h-[60vh] w-full">
-            {QUESTIONS[questionIdx] ? (
+        <div className="flex flex-col gap-y-10 justify-center text-center my-auto min-h-[60vh] w-full">
+            {questions?.[questionIdx] ? (
                 <QuizItem
                     key={questionIdx}
-                    question={QUESTIONS[questionIdx].question}
-                    choices={QUESTIONS[questionIdx].choices}
-                    answer={QUESTIONS[questionIdx].answer}
+                    text={questions[questionIdx].text!}
+                    choices={questions[questionIdx].choices}
+                    answer_id={questions[questionIdx].answer_id!}
                     isLoading={true}
                     onAnswered={handleOnAnswered}
                 />

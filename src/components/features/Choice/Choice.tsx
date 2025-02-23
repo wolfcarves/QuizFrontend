@@ -13,7 +13,7 @@ interface ChoiceItemProps extends ComponentProps<"button"> {
     center?: boolean
 }
 
-const ChoiceItem = ({ title, center, onClick }: ChoiceItemProps) => {
+const ChoiceItem = ({ title, center, onClick, disabled }: ChoiceItemProps) => {
     const [isSelected, setIsSelected] = useState<boolean>(false)
 
     const handleChoiceClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -25,7 +25,7 @@ const ChoiceItem = ({ title, center, onClick }: ChoiceItemProps) => {
         <button
             className={`${center ? "md:col-span-2 md:w-[50%] md:mx-auto" : ""} relative border border-muted/50 rounded-2xl text-center hover:bg-muted/5 p-2.5 md:p-4`}
             onClick={handleChoiceClick}
-            disabled={isSelected}
+            disabled={disabled}
         >
             <Typography.H6
                 title={title}

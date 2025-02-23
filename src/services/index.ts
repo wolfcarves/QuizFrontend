@@ -9,10 +9,12 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { BadRequestResponse } from './models/BadRequestResponse';
 export type { ChoiceCreateDTO } from './models/ChoiceCreateDTO';
+export type { ChoiceDTO } from './models/ChoiceDTO';
 export type { ConflictResponse } from './models/ConflictResponse';
 export type { LoginResponseDTO } from './models/LoginResponseDTO';
 export type { NotFoundResponse } from './models/NotFoundResponse';
 export type { QuestionCreateDTO } from './models/QuestionCreateDTO';
+export type { QuestionDTO } from './models/QuestionDTO';
 export type { QuizCreateDTO } from './models/QuizCreateDTO';
 export type { QuizDTO } from './models/QuizDTO';
 export type { RenewAccessTokenResponseDTO } from './models/RenewAccessTokenResponseDTO';

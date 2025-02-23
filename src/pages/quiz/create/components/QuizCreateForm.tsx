@@ -1,4 +1,5 @@
 import { Button, Input, InputFloatingLabel, Typography } from "@/components/ui"
+import useCreateQuestionsByQuizId from "@/hooks/mutations/useCreateQuestionsByQuizId"
 import useCreateQuizMutation from "@/hooks/mutations/useCreateQuizMutation"
 import { QuestionCreateDTO } from "@/services"
 import { theme } from "@/theme/theme"
@@ -70,16 +71,20 @@ const QuizCreateForm = () => {
     const [questionsInput, setQuestionsInput] = useState<QuestionCreateDTO[]>([baseQuestion])
     const [inputErrors, setInputErrors] = useState<ZodInputError>()
 
+    const { mutateAsync: createQuiz, isPending: isCreateQuizPending } = useCreateQuizMutation()
+    const { mutateAsync: createQuestion, isPending: isCreateQuestionPending } =
+        useCreateQuestionsByQuizId()
+
     const {
         handleSubmit,
         control,
         formState: { errors },
     } = useForm<QuizCreateSchema>({
         resolver: zodResolver(quizCreateSchema),
-        // defaultValues: {
-        //     title: "Example1",
-        //     description: "Desc",
-        // },
+        defaultValues: {
+            title: "Example1",
+            description: "Desc",
+        },
     })
 
     const handleAddQuestion = () => {
@@ -129,8 +134,6 @@ const QuizCreateForm = () => {
         })
     }
 
-    const { mutateAsync: createQuiz, isPending: isCreateQuizPending } = useCreateQuizMutation()
-
     const handleSubmitForm = async (createQuizData: QuizCreateSchema) => {
         const result = await questionsSchema.safeParseAsync(questionsInput)
 
@@ -140,7 +143,9 @@ const QuizCreateForm = () => {
             return
         }
 
-        createQuiz(createQuizData)
+        const { id: quizId } = await createQuiz(createQuizData)
+        createQuestion({ quizId: Number(quizId), requestBody: questionsInput })
+        navigate("/")
     }
 
     const handleCancel = () => {
@@ -213,6 +218,7 @@ const QuizCreateForm = () => {
                                     size="base"
                                     placeholder="Add your question here"
                                     errorMessage={inputErrors?.[qIdx]?.text?._errors?.[0]}
+                                    autoComplete="off"
                                     onChange={(event) => {
                                         const value = event.target.value
                                         setQuestionsInput((prev) => {
@@ -250,6 +256,7 @@ const QuizCreateForm = () => {
                                             </Button>
 
                                             <Input
+                                                autoComplete="off"
                                                 placeholder="Type choice"
                                                 size="base"
                                                 errorMessage={
@@ -325,7 +332,7 @@ const QuizCreateForm = () => {
                     Cancel
                 </Button>
 
-                <Button type="submit" isLoading={isCreateQuizPending}>
+                <Button type="submit" isLoading={isCreateQuizPending || isCreateQuestionPending}>
                     Publish
                 </Button>
             </div>

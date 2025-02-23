@@ -1,9 +1,11 @@
 import { Quiz } from "@/components/features"
 import { Button } from "@/components/ui"
+import useGetQuizzesQuery from "@/hooks/queries/useGetQuizzesQuery"
 import { useNavigate } from "react-router"
 
 const HomePage = () => {
     const navigate = useNavigate()
+    const { data: quizzes } = useGetQuizzesQuery()
 
     return (
         <>
@@ -18,7 +20,9 @@ const HomePage = () => {
             </div>
 
             <div className="space-y-2">
-                <Quiz />
+                {quizzes?.map((quiz) => {
+                    return <Quiz key={quiz.id} {...quiz} />
+                })}
             </div>
         </>
     )

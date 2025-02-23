@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { QuestionCreateDTO } from '../models/QuestionCreateDTO';
+import type { QuestionDTO } from '../models/QuestionDTO';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
@@ -11,7 +12,7 @@ export class QuestionService {
      * @returns QuestionCreateDTO OK
      * @throws ApiError
      */
-    public static postApiV1Question({
+    public static postApiV1CreateQuestion({
         quizId,
         requestBody,
     }: {
@@ -33,14 +34,14 @@ export class QuestionService {
         });
     }
     /**
-     * @returns void
+     * @returns QuestionDTO OK
      * @throws ApiError
      */
-    public static getApiV1Question({
+    public static getApiV1QuestionsByQuizId({
         quizId,
     }: {
         quizId: number,
-    }): CancelablePromise<void> {
+    }): CancelablePromise<Array<QuestionDTO>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v1/question/{quizId}',

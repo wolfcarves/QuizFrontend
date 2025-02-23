@@ -46,7 +46,7 @@ const typography = cva("", {
 })
 
 export interface TypographyProps extends VariantProps<typeof typography> {
-    title?: string | number
+    title?: string | number | null
     className?: ComponentProps<"h1">["className"]
     children?: ReactNode
 }

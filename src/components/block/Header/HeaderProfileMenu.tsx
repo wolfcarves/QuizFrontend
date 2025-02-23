@@ -1,5 +1,6 @@
 import { Avatar, Button, Typography } from "@/components/ui"
 import useLogoutUserMutation from "@/hooks/mutations/useLogoutUserMutation"
+import useGetSessionQuery from "@/hooks/queries/useGetSessionQuery"
 import { useEffect, useState } from "react"
 import { RiArrowDownSLine } from "react-icons/ri"
 import { useLocation, useNavigate } from "react-router"
@@ -8,6 +9,7 @@ const HeaderProfileMenu = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
 
+    const { data: session } = useGetSessionQuery()
     const { mutateAsync: logoutUser } = useLogoutUserMutation()
 
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
@@ -33,7 +35,7 @@ const HeaderProfileMenu = () => {
                 onClick={() => setIsDropdownOpen((prev) => !prev)}
             >
                 <div className="flex gap-x-1.5 items-center">
-                    <Avatar size="lg" />
+                    <Avatar name={`${session?.firstname[0]}${session?.lastname[0]}`} size="lg" />
                     <Typography.Span title="Rodel Crisosto" weight="semibold" size="sm" />
                 </div>
                 <RiArrowDownSLine className="mt-1" />

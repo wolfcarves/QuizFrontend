@@ -15,7 +15,7 @@ const MainLayout = ({ className, ...props }: MainLayoutProps) => {
 
             <div className="container lg:container">
                 <div className="py-10">
-                    <div className="w-full max-w-xl mx-auto space-y-2">
+                    <div className="w-full max-w-2xl mx-auto space-y-2">
                         <Outlet />
                     </div>
                 </div>
