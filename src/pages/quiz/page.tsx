@@ -1,11 +1,12 @@
 import { QuizItem } from "@/components/features"
-import { Loading, Typography } from "@/components/ui"
+import { Button, Loading, Typography } from "@/components/ui"
 import withAuthGuard from "@/higher-order/withAuthGuard"
 import useGetQuestionsByQuizId from "@/hooks/queries/useGetQuestionsByQuizId"
 import { useState } from "react"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 
 const QuizPage = () => {
+    const navigate = useNavigate()
     const [score, setScore] = useState<number>(0)
     const { quizId } = useParams<{ quizId: string }>()
     const [questionIdx, setQuestionIdx] = useState<number>(0)
@@ -17,6 +18,11 @@ const QuizPage = () => {
     const handleOnAnswered = (isAnswerCorrect: boolean) => {
         setQuestionIdx((prev) => prev + 1)
         setScore((prev) => (isAnswerCorrect ? (prev += 1) : prev))
+    }
+
+    const handleRestartQuiz = () => {
+        setScore(0)
+        setQuestionIdx(0)
     }
 
     if (isQuestionsPending) {
@@ -34,14 +40,39 @@ const QuizPage = () => {
                     onAnswered={handleOnAnswered}
                 />
             ) : (
-                <>
-                    <Typography.H4 weight="medium">
-                        Congratulation you finish the quiz !
-                    </Typography.H4>
-                    <Typography.H4 weight="medium">
-                        {score}/{questions?.length}
-                    </Typography.H4>
-                </>
+                <div className="space-y-10">
+                    <div className="space-y-2">
+                        <Typography.H4 weight="medium">
+                            Congratulation you finish the quiz !
+                        </Typography.H4>
+                        <Typography.H4 weight="medium">
+                            {score}/{questions?.length}
+                        </Typography.H4>
+                    </div>
+
+                    <div className="flex gap-x-2 mx-auto w-max">
+                        <Button
+                            variant="outline-solid"
+                            className="mt-5"
+                            size="xs"
+                            onClick={handleRestartQuiz}
+                        >
+                            Restart
+                        </Button>
+
+                        <Button
+                            variant="outline-solid"
+                            className="mt-5"
+                            size="xs"
+                            onClick={() => {
+                                navigate("/")
+                                handleRestartQuiz()
+                            }}
+                        >
+                            Go back
+                        </Button>
+                    </div>
+                </div>
             )}
         </div>
     )
