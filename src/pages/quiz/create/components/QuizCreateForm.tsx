@@ -327,7 +327,7 @@ const QuizCreateForm = () => {
                 Add question
             </Button>
 
-            <div className="flex gap-x-2 justify-end items-center fixed bottom-0 w-full max-w-xl mx-auto bg-background-light border-t border-muted/20 py-3">
+            <div className="flex gap-x-2 justify-end items-center fixed bottom-0 w-full max-w-2xl mx-auto bg-background-light border-t border-muted/20 py-3">
                 <Button variant="outline" onClick={handleCancel}>
                     Cancel
                 </Button>

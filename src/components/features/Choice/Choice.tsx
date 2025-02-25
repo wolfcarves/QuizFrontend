@@ -9,15 +9,25 @@ const Choice = (props: ComponentProps<"div">) => {
 }
 
 interface ChoiceItemProps extends ComponentProps<"button"> {
+    choiceId: number
     title: string
     center?: boolean
+    onChoiceClick?: (choiceId: number) => void
 }
 
-const ChoiceItem = ({ title, center, onClick, disabled }: ChoiceItemProps) => {
+const ChoiceItem = ({
+    choiceId,
+    title,
+    center,
+    onClick,
+    disabled,
+    onChoiceClick,
+}: ChoiceItemProps) => {
     const [isSelected, setIsSelected] = useState<boolean>(false)
 
     const handleChoiceClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         onClick?.(event)
+        onChoiceClick?.(choiceId)
         setIsSelected(true)
     }
 

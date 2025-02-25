@@ -1,35 +1,27 @@
 import Question from "../Question/Question"
 import Choice from "../Choice/Choice"
 import { useEffect, useState } from "react"
-import { ChoiceDTO, QuestionDTO } from "@/services"
+import { QuestionDTO } from "@/services"
 
 interface QuizItemProps extends QuestionDTO {
-    isLoading: boolean
-    onAnswered?: () => void
+    onAnswered?: (isAnswerCorrect: boolean) => void
 }
 
-const QuizItem = ({ text: question, choices, answer_id, isLoading, onAnswered }: QuizItemProps) => {
+const QuizItem = ({ text: question, choices, answer_id, onAnswered }: QuizItemProps) => {
     const [disableChoices, setDisableChoices] = useState<boolean>(false)
-    const [hasSelected, setHasSelected] = useState<boolean>(false)
 
-    let timeout1: NodeJS.Timeout
-    let timeout2: NodeJS.Timeout
+    let timeout: NodeJS.Timeout
 
-    const handleChoiceClick = () => {
+    const handleChoiceClick = (choiceId: number, answerId: number) => {
         setDisableChoices(true)
 
-        timeout1 = setTimeout(() => {
-            setHasSelected(true)
-        }, 700)
-
-        timeout2 = setTimeout(() => {
-            onAnswered?.()
+        timeout = setTimeout(() => {
+            onAnswered?.(choiceId === answerId)
         }, 1200)
     }
 
     const clearTimers = () => {
-        clearTimeout(timeout1)
-        clearTimeout(timeout2)
+        clearTimeout(timeout)
     }
 
     useEffect(() => {
@@ -46,8 +38,9 @@ const QuizItem = ({ text: question, choices, answer_id, isLoading, onAnswered }:
                 {choices.map((choice, idx) => (
                     <Choice.Item
                         key={idx}
+                        choiceId={choice.id!}
                         title={choice.text!}
-                        onClick={handleChoiceClick}
+                        onChoiceClick={() => handleChoiceClick(choice.id!, answer_id)}
                         disabled={disableChoices}
                     />
                 ))}

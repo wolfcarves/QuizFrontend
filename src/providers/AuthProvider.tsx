@@ -1,3 +1,4 @@
+import { Loading } from "@/components/ui"
 import { applyOpenApiConfig } from "@/config/openapiConfig"
 import useGetSessionQuery from "@/hooks/queries/useGetSessionQuery"
 import { ReactNode, useEffect } from "react"
@@ -8,14 +9,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         applyOpenApiConfig()
     }, [])
 
-    const { data, isLoading, isPending } = useGetSessionQuery()
+    const { isLoading, isPending } = useGetSessionQuery()
 
-    if (isLoading || isPending)
-        return (
-            <div className="absolute w-max h-max inset-0 m-auto animate-pulse ">
-                <TbBrandNodejs size={40} />
-            </div>
-        )
+    if (isLoading || isPending) return <Loading />
 
     return <>{children}</>
 }

@@ -3,10 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 export type UserSignUpDTO = {
-    firstname: string | null;
-    lastname: string | null;
-    username: string | null;
-    password: string | null;
-    confirm_password: string | null;
-};
-
+    firstname: string
+    lastname: string
+    username: string
+    password: string
+    confirm_password: string
+}

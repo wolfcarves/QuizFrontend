@@ -1,27 +1,26 @@
 import { QuizItem } from "@/components/features"
-import { Typography } from "@/components/ui"
+import { Loading, Typography } from "@/components/ui"
 import withAuthGuard from "@/higher-order/withAuthGuard"
 import useGetQuestionsByQuizId from "@/hooks/queries/useGetQuestionsByQuizId"
 import { useState } from "react"
 import { useParams } from "react-router"
 
-const QUESTIONS = [
-    {
-        question:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum libero natus praesentium. Suscipit, eaque quis in quae dolore aspernatur corrupti.",
-        choices: ["Until June", "Until June 2"],
-        answer: "Until June 2",
-    },
-]
-
 const QuizPage = () => {
+    const [score, setScore] = useState<number>(0)
     const { quizId } = useParams<{ quizId: string }>()
     const [questionIdx, setQuestionIdx] = useState<number>(0)
 
-    const { data: questions } = useGetQuestionsByQuizId(Number(quizId))
+    const { data: questions, isPending: isQuestionsPending } = useGetQuestionsByQuizId(
+        Number(quizId),
+    )
 
-    const handleOnAnswered = () => {
+    const handleOnAnswered = (isAnswerCorrect: boolean) => {
         setQuestionIdx((prev) => prev + 1)
+        setScore((prev) => (isAnswerCorrect ? (prev += 1) : prev))
+    }
+
+    if (isQuestionsPending) {
+        return <Loading />
     }
 
     return (
@@ -32,11 +31,17 @@ const QuizPage = () => {
                     text={questions[questionIdx].text!}
                     choices={questions[questionIdx].choices}
                     answer_id={questions[questionIdx].answer_id!}
-                    isLoading={true}
                     onAnswered={handleOnAnswered}
                 />
             ) : (
-                <Typography.H4 weight="medium">Congratulation you finish the quiz !</Typography.H4>
+                <>
+                    <Typography.H4 weight="medium">
+                        Congratulation you finish the quiz !
+                    </Typography.H4>
+                    <Typography.H4 weight="medium">
+                        {score}/{questions?.length}
+                    </Typography.H4>
+                </>
             )}
         </div>
     )
